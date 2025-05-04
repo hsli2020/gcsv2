@@ -14,4 +14,8 @@
             </div>
         </div>
     </div>
+
+    @push('meta')
+        <meta http-equiv="refresh" content="30">
+    @endpush
 </x-app-layout>
