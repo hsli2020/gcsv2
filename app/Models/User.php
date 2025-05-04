@@ -45,4 +45,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function settings()
+    {
+        return $this->hasOne(UserSettings::class);
+    }
+
+    public function projects()
+    {
+        $projects = $this->settings->projects;
+        return parseNumberRanges($projects);
+    }
 }
