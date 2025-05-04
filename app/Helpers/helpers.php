@@ -114,3 +114,56 @@ if (!function_exists('parseStr')) {
         return $vars;
     }
 }
+
+if (!function_exists('parseNumberRanges')) {
+    function parseNumberRanges($input, $max=100) {
+        if ($input === '*') {
+            return range(1, $max);
+        }
+
+        $includedPages = [];
+        $excludedPages = [];
+
+        $parts = explode(',', $input);
+
+        foreach ($parts as $part) {
+            $part = trim($part);
+            if (empty($part)) continue;
+
+            if (strpos($part, '-') === 0) {
+                $page = intval(substr($part, 1));
+                if ($page >= 1 && $page <= $max) {
+                    $excludedPages[$page] = $page;
+                }
+            } elseif (strpos($part, '-') !== false) {
+                list($startStr, $endStr) = explode('-', $part, 2);
+                $startStr = trim($startStr);
+                $endStr = trim($endStr);
+
+                $start = $startStr === '' ? 1 : max(1, intval($startStr));
+                $end = $endStr === '' ? $max : min($max, intval($endStr));
+
+                if ($start > $end) {
+                    list($start, $end) = [$end, $start];
+                }
+
+                for ($i = $start; $i <= $end; $i++) {
+                    $includedPages[$i] = $i;
+                }
+            } else {
+                $page = intval($part);
+                if ($page >= 1 && $page <= $max) {
+                    $includedPages[$page] = $page;
+                }
+            }
+        }
+
+        $includedPages = array_values(array_diff($includedPages, $excludedPages));
+        sort($includedPages);
+        return $includedPages;
+    }
+
+#   $input = '1-36, -7, -25, 40, 49-54';
+#   echo $input, "\n";
+#   print_r(implode(',', parseNumberRanges($input)));
+}
