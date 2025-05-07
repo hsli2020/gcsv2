@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SnowWiperController;
 
 Route::view('/', 'welcome');
@@ -15,14 +16,10 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/project/{id}', [ProjectController::class, 'index'])
-        ->name('project.index');
-
-    Route::get('/project/details/{id}', [ProjectController::class, 'details'])
-        ->name('project.details');
-
-    Route::get('/project/chart/{id}', [ProjectController::class, 'chart'])
-        ->name('project.chart');
+    // Project
+    Route::get('/project/{id}', [ProjectController::class, 'index'])->name('project.index');
+    Route::get('/project/details/{id}', [ProjectController::class, 'details'])->name('project.details');
+    Route::get('/project/chart/{id}', [ProjectController::class, 'chart'])->name('project.chart');
 
     // Snow Wiper
     Route::get('/snowwiper/getstate', [SnowWiperController::class, 'getState'])->name('snowwiper.getState');
@@ -31,6 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/snowwiper/pulse', [SnowWiperController::class, 'pulse'])->name('snowwiper.pulse');
     Route::get('/snowwiper/autopulse/{state}', [SnowWiperController::class, 'autoPulse'])->name('snowwiper.autoPulse');
 
+    // Report
+    Route::get('/daily-report', [ReportController::class, 'daily'])->name('report.daily');
+    Route::get('/monthly-report', [ReportController::class, 'monthly'])->name('report.monthly');
+    Route::get('/monthly-budget', [ReportController::class, 'budget'])->name('report.budget');
 });
 
 require __DIR__.'/auth.php';
