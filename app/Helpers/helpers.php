@@ -167,3 +167,56 @@ if (!function_exists('parseNumberRanges')) {
 #   echo $input, "\n";
 #   print_r(implode(',', parseNumberRanges($input)));
 }
+
+if (!function_exists('getPeriod')) {
+    function getPeriod($period)
+    {
+        switch (strtoupper($period)) {
+        case 'LAST-HOUR':
+            $start = gmdate('Y-m-d H:00:00', strtotime('-1 hours'));
+            $end   = gmdate('Y-m-d H:00:00');
+            break;
+
+        case 'TODAY':
+            $start = gmdate('Y-m-d h:i:s', mktime(0, 0, 0));
+            $end   = gmdate('Y-m-d h:i:s', mktime(23, 59, 59));
+            break;
+
+        case 'MONTH-TO-DATE':
+            $start = gmdate('Y-m-d h:i:s', mktime(0, 0, 0, date('n'), 1));
+            $end   = gmdate('Y-m-d h:i:s', mktime(23, 59, 59));
+            break;
+
+        case 'THIS-MONTH':
+            $monthStart = strtotime(date('Y-m-01 00:00:00'));
+            $monthEnd   = strtotime(date('Y-m-t 23:59:59'));
+
+            $start = gmdate('Y-m-d h:i:s', $monthStart);
+            $end   = gmdate('Y-m-d h:i:s', $monthEnd);
+            break;
+
+        case 'SNAPSHOT':
+            // last minute (15 minutes ago)
+            $start = gmdate('Y-m-d H:i:00', strtotime('-16 minute'));
+            $end   = gmdate('Y-m-d H:i:30', strtotime('-15 minute'));
+            break;
+
+        default:
+            if (preg_match('/\d{4}-\d{2}-\d{2}/', $period)) {
+                // specified date: YYYY-MM-DD
+                $start = gmdate('Y-m-d H:i:s', strtotime("$period 00:00:00"));
+                $end   = gmdate('Y-m-d H:i:s', strtotime("$period 23:59:59"));
+            } else {
+                throw new \InvalidArgumentException("Bad argument '$period'");
+            }
+            break;
+        }
+
+        return [ $start, $end ];
+    }
+
+    function getTimeRange($period)
+    {
+        return getPeriod($period);
+    }
+}
