@@ -43,4 +43,8 @@ Schedule::command('gcs:smart-alert')
 # Snapshot
 Schedule::command('gcs:snapshot')
     ->everyTenMinutes();
+
+# Cleanup
+Schedule::command('gcs:cleanup')
+    ->dailyAt('01:00');
 //*/
