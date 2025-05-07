@@ -22,4 +22,39 @@ class ProjectController extends Controller
     {
         dump(__METHOD__);
     }
+
+    public function gmcamera()
+    {
+        dump(__METHOD__);
+    }
+
+    public function camera($id)
+    {
+        dump(__METHOD__);
+    }
+
+    public function compare()
+    {
+        dump(__METHOD__);
+    }
+
+    public function alert()
+    {
+        dump(__METHOD__);
+    }
+
+    public function analysis()
+    {
+        dump(__METHOD__);
+    }
+
+    public function map()
+    {
+        dump(__METHOD__);
+    }
+
+    public function ottawasnow()
+    {
+        dump(__METHOD__);
+    }
 }
