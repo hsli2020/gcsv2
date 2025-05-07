@@ -29,7 +29,8 @@ Schedule::command('gcs:monthly-report send')
 
 # Data Import
 Schedule::command('gcs:data-import')
-    ->everyFiveMinutes();
+    ->everyFiveMinutes()
+    ->runInBackground();
 
 # Data Archive
 Schedule::command('gcs:data-archive')
@@ -37,5 +38,9 @@ Schedule::command('gcs:data-archive')
 
 # Smart Alert
 Schedule::command('gcs:smart-alert')
+    ->everyTenMinutes();
+
+# Snapshot
+Schedule::command('gcs:snapshot')
     ->everyTenMinutes();
 //*/
