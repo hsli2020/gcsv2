@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Log;
 
-class DataImport extends Command
+class DataImportCommand extends Command
 {
     /**
      * The name and signature of the console command.

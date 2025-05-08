@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class SmartAlert extends Command
+class SmartAlertCommand extends Command
 {
     /**
      * The name and signature of the console command.

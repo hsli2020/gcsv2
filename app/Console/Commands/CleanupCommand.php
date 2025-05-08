@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class Cleanup extends Command
+class CleanupCommand extends Command
 {
     const TTL = 5*24*60*60; // 5 days
 

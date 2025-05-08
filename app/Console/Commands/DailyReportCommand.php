@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class DailyReport extends Command
+class DailyReportCommand extends Command
 {
     /**
      * The name and signature of the console command.

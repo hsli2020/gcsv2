@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 
 use App\Models\Project;
 
-class DataArchive extends Command
+class DataArchiveCommand extends Command
 {
     /**
      * The name and signature of the console command.
