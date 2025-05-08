@@ -27,15 +27,5 @@ class SmartAlertCommand extends Command
      */
     public function handle()
     {
-        $this->log(__METHOD__);
-    }
-
-    protected function log($str)
-    {
-        $filename = storage_path('logs/alert.log');
-        $str = date('Y-m-d H:i:s ') . $str . "\n";
-
-        echo $str;
-        error_log($str, 3, $filename);
     }
 }
