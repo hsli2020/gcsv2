@@ -29,5 +29,21 @@ class DataImport extends Command
     public function handle()
     {
         // $columns = Schema::getColumns('users');
+        $this->log(__METHOD__);
+    }
+
+    protected function log($str)
+    {
+        $today = date('Y-m-d');
+        $filename = storage_path("logs/import-$today.log");
+
+       #if (file_exists($filename) && filesize($filename) > 1024*1024) {
+       #    unlink($filename);
+       #}
+
+        $str = date('Y-m-d H:i:s ') . $str . "\n";
+
+        echo $str;
+        error_log($str, 3, $filename);
     }
 }
