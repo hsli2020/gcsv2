@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
     // Report
     Route::get('/report/daily', [ReportController::class, 'daily'])->name('report.daily');
     Route::get('/report/monthly', [ReportController::class, 'monthly'])->name('report.monthly');
-    Route::get('/report/budget', [ReportController::class, 'budget'])->name('report.budget');
+    Route::get('/report/budget/{id?}', [ReportController::class, 'budget'])->name('report.budget');
 });
 
 require __DIR__.'/auth.php';
