@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
+use App\Services\DailyReport;
+
 class DailyReportCommand extends Command
 {
     /**
@@ -32,10 +34,14 @@ class DailyReportCommand extends Command
         switch ($action) {
         case 'make':
             echo "Make DailyReport";
+            $dailyReport = new DailyReport();
+            $dailyReport->generate();
             break;
 
         case 'send':
             echo "Send DailyReport";
+            $dailyReport = new DailyReport();
+            $dailyReport->send();
             break;
 
         default:

@@ -8,4 +8,14 @@ class MonthlyReport
     {
         return new self();
     }
+
+    public function generate()
+    {
+        echo __METHOD__, PHP_EOL;
+    }
+
+    public function send()
+    {
+        echo __METHOD__, PHP_EOL;
+    }
 }

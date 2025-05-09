@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
+use App\Services\MonthlyReport;
+
 class MonthlyReportCommand extends Command
 {
     /**
@@ -32,10 +34,14 @@ class MonthlyReportCommand extends Command
         switch ($action) {
         case 'make':
             echo "Make MonthlyReport";
+            $monthlyReport = new MonthlyReport();
+            $monthlyReport->generate();
             break;
 
         case 'send':
             echo "Send MonthlyReport";
+            $monthlyReport = new MonthlyReport();
+            $monthlyReport->send();
             break;
 
         default:
